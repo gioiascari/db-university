@@ -1,6 +1,6 @@
 ES 1
 Selezionare tutti gli studenti nati nel 1990s.
-SELECT * FROM `students` WHERE `date_of_birth` >="1990-01-01" AND `date_of_birth` <="1991-01-01";
+SELECT * FROM `students` WHERE `date_of_birth` BETWEEN "1990-01-01" AND "1991-01-01";
 
 ES 2
 Selezionare tutti i corsi che valgono più di 10 crediti.
