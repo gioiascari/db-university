@@ -54,7 +54,8 @@ WHERE `departments` . `name` = "Dipartimento di Matematica";
 ES 8
 BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
 superare ciascuno dei suoi esami.
-SELECT `courses`.`name`,`students`.`name`, `students`.`surname` , COUNT(*) AS `total_attempts` 
+SELECT `courses`.`name`AS `name_course`, `students`.`name`, `students`.`surname` , COUNT(`exam_student` . `vote`) AS `total_attempts`, 
+MAX(`exam_student`.`vote`) AS `voto_finale`
 FROM `students` 
 INNER JOIN `exam_student`
 ON  `exam_student` . `student_id` = `students` . `id`
@@ -62,5 +63,5 @@ INNER JOIN `exams`
 ON `exam_student` . `exam_id` = `exams` . `id`
 INNER JOIN `courses`
 ON `exams` . `course_id` = `courses` . `id`
-GROUP BY `courses`. `id`, `students`.`id`
-ORDER BY `students`.`surname`; 
+GROUP BY `courses`.`id`, `students`.`id`
+HAVING `voto_finale` >= 18;
